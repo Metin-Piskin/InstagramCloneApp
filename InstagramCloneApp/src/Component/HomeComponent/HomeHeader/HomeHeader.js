@@ -4,12 +4,12 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './HomeHeader.style';
 import { Logo, Plus, Heart, Messengers } from '../../İcons/icons';
 
-function Header() {
+function Header({ onPres }) {
     return (
         <View style={styles.header}>
             <Logo fill="#000" />
             <View style={styles.actions}>
-                <TouchableOpacity style={styles.icons} activeOpacity="0.5">
+                <TouchableOpacity style={styles.icons} onPress={onPres}>
                     <Plus fill="#000" size={24} />
                 </TouchableOpacity>
 

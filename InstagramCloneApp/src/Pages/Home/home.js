@@ -8,10 +8,15 @@ import Post from "../../Component/PostCopmponent";
 import PostData from "../../Data/Post.Data";
 import Divider from "../../Component/HomeComponent/HomeDivider/HomeDivider";
 
-const HomePage = () => {
+const HomePage = ({navigation}) => {
+    function handlePress() {
+        return(
+            navigation.navigate('UploadFotoScreen')
+        )
+    };
     return (
         <>
-            <HomeHeader />
+            <HomeHeader onPres={handlePress}/>
             <ScrollView style={styles.container} stickyHeaderIndices={[1]}>
                 <HomeStories />
                 <Divider />
