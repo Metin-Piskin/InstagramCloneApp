@@ -1,15 +1,23 @@
 import React from "react";
-import { View, Text } from "react-native";
-import auth from "@react-native-firebase/auth";
+import { View, Text, ScrollView } from "react-native";
 
-import TextButton from "../../Component/TextButton";
+import ProfileHeader from "../../Component/ProfileComponent/ProfileHeader";
+import ProfileFollow from "../../Component/ProfileComponent/ProfileFollow";
+import ProfileHug from "../../Component/ProfileComponent/ProfileHug";
+import ProfileStories from "../../Component/ProfileComponent/ProfileStories";
+import ProfileTab from "../../Component/ProfileComponent/ProfileTab";
+import ProfilePosts from "../../Component/ProfileComponent/ProfilePosts";
 
 const Profile = () => {
     return (
-        <View>
-            <Text>Profile</Text>
-            <TextButton text="Çıkış" onPress={() => auth().signOut()}/>
-        </View>
+        <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
+            <ProfileHeader />
+            <ProfileFollow />
+            <ProfileHug />
+            <ProfileStories />
+            <ProfileTab />
+            <ProfilePosts />
+        </ScrollView>
     );
 }
 export default Profile;
