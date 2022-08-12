@@ -17,7 +17,7 @@ export default [
         id: 3,
         user: {
             name: "Ramazan Gargı",
-            avatar: 'https://instagram.fyei1-1.fna.fbcdn.net/v/t51.2885-15/275161549_537238454399610_1075213918741422041_n.webp?stp=dst-jpg_e35_p640x640_sh0.08&_nc_ht=instagram.fyei1-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=_Iwwje-ah0cAX9d2TtK&edm=ALQROFkBAAAA&ccb=7-5&ig_cache_key=Mjc5NzU0MDk5Mjg1MTQxMTQxNg%3D%3D.2-ccb7-5&oh=00_AT_u-vQfsG8CZzdltuTER9ik8Pofo6MoV8U6Yk-lpTWZBw&oe=62EC03FE&_nc_sid=30a2ef'
+            avatar: 'https://instagram.fyei4-1.fna.fbcdn.net/v/t51.2885-15/275161549_537238454399610_1075213918741422041_n.webp?stp=dst-jpg_e35_p640x640_sh0.08&_nc_ht=instagram.fyei4-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=RrYYIJ4p7WwAX861CXe&edm=ALQROFkBAAAA&ccb=7-5&ig_cache_key=Mjc5NzU0MDk5Mjg1MTQxMTQxNg%3D%3D.2-ccb7-5&oh=00_AT_Dqlvq-T2W7vQNXcf8RSjdGVHIydJbkw7BZYEmZL7Zhg&oe=62FDD03E&_nc_sid=30a2ef'
         }
     },
     {

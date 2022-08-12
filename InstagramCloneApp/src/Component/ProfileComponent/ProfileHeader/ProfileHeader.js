@@ -5,7 +5,7 @@ import auth from "@react-native-firebase/auth";
 import styles from './ProfileHeader.style';
 import { Plus, Burger, Drop } from '../../İcons/icons';
 
-const ProfileHeader = () => {
+const ProfileHeader = ({onPressPlus, onPressBurger}) => {
     return (
         <View style={styles.header}>
             <View style={styles.name}>
@@ -17,11 +17,11 @@ const ProfileHeader = () => {
 
             <View style={styles.actions}>
 
-                <TouchableOpacity style={styles.icons} onPress={null}>
+                <TouchableOpacity style={styles.icons} onPress={onPressPlus}>
                     <Plus fill="#000" size={24} />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.icons}  onPress={() => auth().signOut()}>
+                <TouchableOpacity style={styles.icons}  onPress={onPressBurger}>
                     <Burger fill="#000" size={24} />
                 </TouchableOpacity>
 
