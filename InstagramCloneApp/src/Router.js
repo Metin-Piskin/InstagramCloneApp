@@ -17,6 +17,7 @@ import Login from "./Pages/Auth/Login";
 import Sign from "./Pages/Auth/Sign";
 import UploadFoto from "./Pages/UploadFoto";
 import Metin from "./Assets/Metin.png";
+import YazıButton from "./Component/YazıButton/YazıButton";
 
 import {
     Home,
@@ -68,7 +69,13 @@ const Router = () => {
                             color: "#000",
                         },
                         headerTitleAlign: "center",
-                        headerTitle: "Upload Foto",
+                        headerTitle: "Yeni Gönderi",
+                        headerRight: () => (
+                            <YazıButton
+                                text="Paylaş"
+                                onPress={null}
+                            />
+                        ),
                     }}
                 />
             </Stack.Navigator>

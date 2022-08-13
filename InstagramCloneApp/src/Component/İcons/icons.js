@@ -319,6 +319,37 @@ function ModalCovid({ size, ...props }) {
     )
 }
 
+function Paylas({ size, fill, ...props }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 26 25" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <G clip-path="url(#clip0_158_217)">
+                <Path d="M16.9392 19.2676L23.9999 12.3471L17.0611 5.30436" stroke={fill} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </G>
+            <Defs>
+                <ClipPath id="clip0_158_217">
+                    <Rect width="23.9377" height="24" fill="white" transform="translate(0.896301 24.115) rotate(-89.5)" />
+                </ClipPath>
+            </Defs>
+        </Svg>
+    )
+}
+
+function Add({ size, ...props }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 18 19" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <Path d="M10 0.792236V8.77146H18V10.7663H10V18.7455H8V10.7663H0V8.77146H8V0.792236H10Z" />
+        </Svg>
+    )
+}
+
+function Music({ size, ...props }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 29 36" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <Path fillRule="evenodd" clipRule="evenodd" d="M8 4.82749C8 4.34736 8.34124 3.93499 8.81289 3.84515L27.8129 0.226104C28.4291 0.108727 29 0.581135 29 1.20844V28C29 30.7614 26.7614 33 24 33C21.2386 33 19 30.7614 19 28C19 25.2386 21.2386 23 24 23C25.1256 23 26.1643 23.3719 27 23.9996V8.38094L10 11.619V31C10 33.7614 7.76142 36 5 36C2.23858 36 0 33.7614 0 31C0 28.2386 2.23858 26 5 26C6.12561 26 7.16434 26.3719 8 26.9996V4.82749ZM10 5.65499L27 2.4169V6.34498L10 9.58308V5.65499ZM24 25C25.6569 25 27 26.3431 27 28C27 29.6569 25.6569 31 24 31C22.3431 31 21 29.6569 21 28C21 26.3431 22.3431 25 24 25ZM8 31C8 29.3431 6.65685 28 5 28C3.34315 28 2 29.3431 2 31C2 32.6569 3.34315 34 5 34C6.65685 34 8 32.6569 8 31Z"/>
+        </Svg>
+    )
+}
+
 
 export {
     Logo,
@@ -355,5 +386,8 @@ export {
     ModalSavePost,
     ModalCloseFriends,
     ModalStar,
-    ModalCovid
+    ModalCovid,
+    Paylas,
+    Add,
+    Music
 }

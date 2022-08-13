@@ -9,7 +9,7 @@ import PostData from "../../Data/Post.Data";
 import Divider from "../../Component/HomeComponent/HomeDivider/HomeDivider";
 import PlusModal from "../../Component/ModalComponent/HomePlusModal";
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const handleInputToggle = () => {
         setModalVisible(!modalVisible);
@@ -19,12 +19,18 @@ const HomePage = () => {
             setModalVisible(!modalVisible)
         )
     };
+
+    const handlePaylasPress = () => {
+        navigation.navigate("UploadFotoScreen");
+    };
+
     return (
         <>
             <HomeHeader onPres={handlePress} />
             <PlusModal
                 visible={modalVisible}
                 onClose={handleInputToggle}
+                PaylasPress={handlePaylasPress}
             />
             <ScrollView style={styles.container} stickyHeaderIndices={[1]}>
                 <HomeStories />
