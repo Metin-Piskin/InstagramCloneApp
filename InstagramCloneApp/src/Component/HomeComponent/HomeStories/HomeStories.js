@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, Image } from "react-native";
 import LinearGradient from 'react-native-linear-gradient';
 
-import StoriesData from "../../../Data/StoriesData";
+import { USERS } from "../../../Data/StoriesData";
 import styles from "./HomeStories.style";
 
 function HomeStories() {
@@ -12,8 +12,8 @@ function HomeStories() {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {StoriesData.map(story => (
-                    <View key={story.id} style={styles.story}>
+                {USERS.map((story, index) => (
+                    <View key={index} style={styles.story}>
                         <LinearGradient
                             colors={['#DE0046', '#F7A34B']}
                             style={styles.cover}
@@ -21,11 +21,11 @@ function HomeStories() {
                             <Image
                                 style={styles.stavatar}
                                 source={{
-                                    uri: story.user.avatar
+                                    uri: story.image,
                                 }}
                             />
                         </LinearGradient>
-                        <Text numberOfLines={1} style={styles.username}>{story.user.name}</Text>
+                        <Text numberOfLines={1} style={styles.username}>{story.user}</Text>
                     </View>
 
                 ))}

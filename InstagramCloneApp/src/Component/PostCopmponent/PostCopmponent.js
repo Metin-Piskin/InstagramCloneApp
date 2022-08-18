@@ -7,6 +7,7 @@ import { tr } from 'date-fns/locale'
 import styles from "./PostCopmponent.style";
 import { Dots, Heart, Comment, Share, BookMark } from "../İcons/icons";
 import Fitİmage from "../Fitİmage";
+import Divider from "../HomeComponent/HomeDivider/HomeDivider";
 
 function Post({ post }) {
     const formattedDate = formatDistance(parseISO(post.date), new Date(),
@@ -14,14 +15,17 @@ function Post({ post }) {
 
     return (
         <View style={styles.post}>
+            <Divider />
             <View style={styles.header}>
                 <View style={styles.username}>
-                    <Image source={{ uri: post.user.avatar }} style={styles.avatar} />
-                    <Text style={styles.usertext}>{post.user.name}</Text>
+                    <Image source={{ uri: post.profile_picture }} style={styles.avatar} />
+                    <Text style={styles.usertext}>{post.user}</Text>
                 </View>
                 <Dots size={16} fill="#262626" />
             </View>
-            <Fitİmage src={post.image} />
+
+            <Fitİmage src={post.imageurl} />
+
             <View style={styles.content}>
                 <View style={styles.actions}>
                     <View style={styles.left_actions}>
@@ -51,19 +55,28 @@ function Post({ post }) {
                         marginBottom: 7,
                     }}
                 >
-                    <Text style={styles.name}>{post.user.name}</Text>
+                    <Text style={styles.name}>{post.user}</Text>
                     {'  '}
-                    {post.description}
+                    {post.caption}
                 </ReadMore >
-                {post.comments > 0 && (
+                {post.comments.length > 1 && (
                     <TouchableOpacity style={{ paddingBottom: 7 }}>
-                        <Text style={styles.commenttext}>View all {post.comments} Comments</Text>
+                        <Text style={styles.commenttext}>View all {post.comments.length} Comments</Text>
                     </TouchableOpacity>
                 )}
                 <View style={styles.dt}>
                     <Text style={styles.date}>{formattedDate}</Text>
                     <Text style={styles.translation}>See Translation</Text>
                 </View>
+                {post.comments.map((comment, index) => (
+                    <View key={index}>
+                        <Text>
+                            <Text style={styles.name}>{comment.user}</Text>
+                            {'  '}
+                            {comment.comment}
+                        </Text>
+                    </View>
+                ))}
             </View>
         </View>
     )

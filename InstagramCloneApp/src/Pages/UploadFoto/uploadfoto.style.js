@@ -14,14 +14,14 @@ export default StyleSheet.create({
     },
     oneimage: {
         height: 120,
-        width: 150,
+        width: 140,
         resizeMode: 'contain'
     },
     image: {
         height: 120,
         width: 150,
         backgroundColor: "white",
-        borderWidth: 1,
+
         borderColor: "gray",
         marginHorizontal: 5,
         marginVertical: 10,
@@ -33,12 +33,15 @@ export default StyleSheet.create({
         marginHorizontal: 5,
         marginVertical: 10,
     },
+    twocontainer: {
+        height: 35,
+    },
     çizgi: {
         height: 1,
         width: 400,
         backgroundColor: "black",
         opacity: 0.3,
-        marginVertical: 10,
+        marginVertical: 7,
     },
     cat: {
         flexDirection: 'row',

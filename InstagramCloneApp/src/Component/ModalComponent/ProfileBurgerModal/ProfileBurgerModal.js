@@ -5,7 +5,7 @@ import Modal from "react-native-modal";
 import { ModalSettings, ModalShape, ModalActivity, ModalQR, ModalSavePost, ModalCloseFriends, ModalCovid, ModalStar } from '../../İcons/icons';
 import styles from './ProfileBurgerModal.style';
 
-const PlusModal = ({ onClose, visible }) => {
+const PlusModal = ({ onClose, visible, exit }) => {
     return (
         <Modal
             style={styles.modal}
@@ -60,7 +60,7 @@ const PlusModal = ({ onClose, visible }) => {
                 </TouchableOpacity>
                 <View style={styles.çizgi}></View>
 
-                <TouchableOpacity style={styles.inner_container}>
+                <TouchableOpacity style={styles.inner_container} onPress={exit}>
                     <ModalCovid fill="#000" size={20} />
                     <Text style={styles.yazı}>COVID-19 Bilgi Merkezi</Text>
                 </TouchableOpacity>

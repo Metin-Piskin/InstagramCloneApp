@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const YazıButton = ({ text, onPress }) => {
+const YazıButton = ({ text, onPress, disabled }) => {
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={onPress} disabled={disabled}>
             <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
     )

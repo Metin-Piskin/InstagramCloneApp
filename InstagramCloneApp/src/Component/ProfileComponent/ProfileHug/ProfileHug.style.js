@@ -15,20 +15,21 @@ export default StyleSheet.create({
     },
     button_container: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 15,
+        marginTop: 15,      
     },
     edit_button: {
         backgroundColor: "#EBEBEB",
         paddingHorizontal: 45,
         paddingVertical: 5,
         borderRadius: 10,
+        marginRight: 2,
     },
     library_button: {
         backgroundColor: "#EBEBEB",
         paddingHorizontal: 45,
         paddingVertical: 5,
         borderRadius: 10,
+        marginRight: 2,
     },
     drop_button: {
         backgroundColor: "#EBEBEB",

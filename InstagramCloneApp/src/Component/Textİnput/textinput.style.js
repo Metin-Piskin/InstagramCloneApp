@@ -12,7 +12,7 @@ export default StyleSheet.create({
     input: {
         flex: 1,
         backgroundColor: "#E8E6E6",
-        borderRadius: 10,
+        borderRadius: 8,
         color: "black",
         padding: Platform.OS === "android" ? 4 : 8,
     },

@@ -3,13 +3,17 @@ import { View, TextInput } from "react-native";
 
 import styles from "./Paylaşİnput.style";
 
-const Paylaşİnput = () => {
+const Paylaşİnput = ({title, onChangeText, onBlur, value, onChange, multiline}) => {
     return (
         <View style={styles.container}>
         <TextInput
-            placeholder="Açıklama Ekle..."
+            placeholder={title}
             style={styles.input}
-            multiline={true}
+            multiline={multiline}
+            onChangeText={onChangeText}
+            onBlur={onBlur}
+            value={value}
+            onChange={onChange}
         />
         </View>
     );

@@ -16,6 +16,7 @@ import ProfileScreen from "./Pages/Profile";
 import Login from "./Pages/Auth/Login";
 import Sign from "./Pages/Auth/Sign";
 import UploadFoto from "./Pages/UploadFoto";
+import StoryScreen from "./Pages/Story";
 import Metin from "./Assets/Metin.png";
 import YazıButton from "./Component/YazıButton/YazıButton";
 
@@ -70,6 +71,17 @@ const Router = () => {
                         },
                         headerTitleAlign: "center",
                         headerTitle: "Yeni Gönderi",
+                    }}
+                />
+                <Stack.Screen name="StoryScreen" component={StoryScreen}
+                    options={{
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            fontWeight: "bold",
+                            color: "#000",
+                        },
+                        headerTitleAlign: "center",
+                        headerTitle: "Yeni Gönderi",
                         headerRight: () => (
                             <YazıButton
                                 text="Paylaş"
@@ -81,6 +93,8 @@ const Router = () => {
             </Stack.Navigator>
         )
     }
+
+
 
     return (
         <NavigationContainer>
@@ -94,8 +108,7 @@ const Router = () => {
                         />
                     </Stack.Navigator>
                 ) : (
-
-                    <>
+                    <>  
                         <Tab.Navigator
                             screenOptions={{
                                 tabBarShowLabel: false,

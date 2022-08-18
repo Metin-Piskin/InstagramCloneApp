@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, TouchableOpacity, Image } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
-
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import validUrl from 'valid-url';
 
 import styles from './uploadfoto.style';
 import { Paylas } from '../../Component/İcons/icons';
@@ -9,8 +11,17 @@ import Pİnput from '../../Component/PaylaşComponent/Paylaşİnput';
 import PButton from '../../Component/PaylaşComponent/PaylaşİmageButton';
 import GrayButton from '../../Component/GrayButton';
 import MusicGrayButton from '../../Component/MusicGrayButton';
+import YazıButton from "../../Component/YazıButton/YazıButton";
 
-const UploadFoto = () => {
+const PLACEHOLDER_IMAGE = 'https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=170667a&w=0&h=_cx7HW9R4Uc_OLLxg2PcRXno4KERpYLi5vCz-NEyhi0=';
+
+const uploadPostSchema = Yup.object().shape({
+  imageurl: Yup.string().url().required('A url is required'),
+  caption: Yup.string().max(2200, 'Caption has Reached the character limit.')
+});
+
+const UploadFoto = ({ navigation }) => {
+  const [thumbnailurl, setThumbnailurl] = useState(PLACEHOLDER_IMAGE);
   const [imageGallery, setImageGallery] = useState(null);
 
   const openGallery = () => {
@@ -34,27 +45,74 @@ const UploadFoto = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.onecontainer}>
-        <View style={styles.image}>
-          <PButton
-            İmagePress={openGallery}
-          />
-          <View style={styles.imagecontainer}>
-            {
-              imageGallery != null &&
+    <Formik
+      initialValues={{ caption: '', imageurl: '' }}
+      onSubmit={(values) => {
+        console.log(values)
+        console.log('Your post was submitted successfully!')
+        navigation.goBack();
+      }}
+      validationSchema={uploadPostSchema}
+      validateOnMount={true}
+    >
+      {({ handleBlur, handleChange, handleSubmit, values, errors, isValid }) => (
+        <View style={styles.container}>
+          <View style={styles.onecontainer}>
+            <View style={styles.image}>
               <Image
-                source={{ uri: imageGallery.uri }}
+                source={{ uri: validUrl.isUri(thumbnailurl) ? thumbnailurl : PLACEHOLDER_IMAGE }}
                 style={styles.oneimage}
               />
-            }
-          </View>
-        </View>
-        <View style={styles.açıklama}>
-          <Pİnput />
-        </View>
-      </View>
+            </View>
 
+            <View style={styles.açıklama}>
+              <Pİnput
+                title="Açıklama Ekle..."
+                onChangeText={handleChange('caption')}
+                onBlur={handleBlur('caption')}
+                value={values.caption}
+                onChange={null}
+                multiline={true}
+              />
+            </View>
+            <View style={styles.çizgi}></View>
+            <View style={styles.twocontainer}>
+              <Pİnput
+                onChange={(e) => setThumbnailurl(e.nativeEvent.text)}
+                title="URL Ekle..."
+                onChangeText={handleChange('imageurl')}
+                onBlur={handleBlur('imageurl')}
+                value={values.imageurl}
+                multiline={false}
+              />
+            {errors.imageurl && (
+              <Text style={{ fontSize: 10, color: 'red'}}>
+                {errors.imageurl}
+              </Text>
+            )}
+            </View>
+
+          </View>
+
+          <Clone />
+
+          <YazıButton
+            text="Paylaş"
+            onPress={handleSubmit}
+            disabled={!isValid}
+          />
+
+        </View>
+      )}
+    </Formik>
+  );
+}
+export default UploadFoto;
+
+
+const Clone = () => {
+  return (
+    <>
       <View style={styles.çizgi}></View>
       <TouchableOpacity style={styles.cat}>
         <Text style={styles.yazı}>Kişileri Etiketle</Text>
@@ -140,11 +198,6 @@ const UploadFoto = () => {
         <Paylas fill={"#000"} size={24} />
       </TouchableOpacity>
       <View style={styles.çizgi}></View>
-
-
-
-
-    </View>
-  );
+    </>
+  )
 }
-export default UploadFoto;

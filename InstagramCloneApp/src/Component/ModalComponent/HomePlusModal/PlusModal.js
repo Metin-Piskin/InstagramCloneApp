@@ -5,7 +5,7 @@ import Modal from "react-native-modal";
 import { ModalVector, ModalSwitch, ModalReels, ModalLive } from '../../İcons/icons';
 import styles from './PlusModal.style';
 
-const PlusModal = ({ onClose, visible, PaylasPress }) => {
+const PlusModal = ({ onClose, visible, PaylasPress, StoryPress }) => {
     return (
         <Modal
             style={styles.modal}
@@ -23,7 +23,7 @@ const PlusModal = ({ onClose, visible, PaylasPress }) => {
                 </TouchableOpacity>
                 <View style={styles.çizgi}></View>
 
-                <TouchableOpacity style={styles.hikaye} onPress={null}>
+                <TouchableOpacity style={styles.hikaye} onPress={StoryPress}>
                     <Text style={styles.yazı}>Hikaye</Text>
                     <ModalSwitch fill="#000" size={20} />
                 </TouchableOpacity>

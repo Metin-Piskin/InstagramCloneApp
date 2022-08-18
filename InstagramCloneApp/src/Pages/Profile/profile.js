@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView } from "react-native";
+import auth from "@react-native-firebase/auth";
 
 import ProfileHeader from "../../Component/ProfileComponent/ProfileHeader";
 import ProfileFollow from "../../Component/ProfileComponent/ProfileFollow";
@@ -32,6 +33,7 @@ const Profile = () => {
         )
     };
 
+
     return (
         <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
             <ProfileHeader
@@ -45,6 +47,7 @@ const Profile = () => {
             <ProfileBurgerModal
                 visible={modalBurgerVisible}
                 onClose={handleBurgerToggle}
+                exit={() => auth().signOut()}
             />
 
             <ProfileFollow />

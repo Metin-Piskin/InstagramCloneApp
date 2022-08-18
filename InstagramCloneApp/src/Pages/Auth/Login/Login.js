@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Formik } from "formik";
 import auth from "@react-native-firebase/auth";
 import { showMessage } from "react-native-flash-message";
+import * as Yup from 'yup';
+import Validator from 'email-validator';
 
 import style from './Login.style';
 
 import authErrorMessageParser from "../../../utils/authErrorMessageParser";
 import Input from '../../../Component/Textİnput';
 import TextButton from '../../../Component/TextButton';
-import Button from '../../../Component/Button';
+
 
 const initialFormValues = {
   usermail: '',
@@ -38,6 +40,11 @@ function Login({ navigation }) {
     }
   }
 
+  const LoginFormSchema = Yup.object().shape({
+    usermail: Yup.string().email().required('Email is required'),
+    password: Yup.string().required().min(6, 'Password must be at least 6 characters'),
+  });
+
   return (
     <View style={style.container}>
       <View style={style.logoyazi_container}>
@@ -45,30 +52,73 @@ function Login({ navigation }) {
       </View>
 
       <View style={style.imputs}>
-        <Formik initialValues={initialFormValues} onSubmit={handleFormSubmit}>
-          {({ values, handleChange, handleSubmit }) => (
+        <Formik
+          initialValues={initialFormValues}
+          onSubmit={handleFormSubmit}
+          validationSchema={LoginFormSchema}
+          validateOnMount={true}
+        >
+          {({ values, handleChange, handleSubmit, handleBlur, isValid }) => (
             <>
-              <Input
-                placeholder="E-posta"
-                onChangeText={handleChange('usermail')}
-                value={values.usermail}
-              />
-              <Input
-                placeholder="Şifre"
-                onChangeText={handleChange('password')}
-                value={values.password}
-              />
+              <View style={[
+                styles.input_container,
+                {
+                  borderColor:
+                    values.usermail < 1 || Validator.validate(values.usermail)
+                      ? '#E0DDDD'
+                      : '#FF0000',
+                }
+              ]}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="E-posta"
+                  onChangeText={handleChange('usermail')}
+                  value={values.usermail}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
+                  autoFocus={true}
+                  onBlur={handleBlur('usermail')}
+                />
+              </View>
+
+              <View style={[
+                styles.input_container,
+                {
+                  borderColor:
+                    1 > values.password || values.password.length > 5
+                      ? '#E0DDDD'
+                      : '#FF0000',
+                }
+              ]}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Şifre"
+                  onChangeText={handleChange('password')}
+                  value={values.password}
+                  autoCapitalize="none"
+                  textContentType={'password'}
+                  autoCorrect={false}
+                  secureTextEntry={true}
+                  onBlur={handleBlur('password')}
+                />
+              </View>
+
               <View style={style.şifre}>
                 <TextButton text="Şifreni mi Unuttun?" onPress={null} />
               </View>
-              <Button text="Giriş Yap" onPress={handleSubmit} />
+
+
+              <TouchableOpacity onPress={handleSubmit} disabled={!isValid}>
+                <View style={styles.container(isValid)}>
+                  <Text style={styles.text}>Giriş Yap</Text>
+                </View>
+              </TouchableOpacity>
+
             </>
           )}
         </Formik>
       </View>
-
-
-
 
       <View style={style.kayıtol}>
         <Text>Hesabınız yok mu? </Text>
@@ -79,3 +129,37 @@ function Login({ navigation }) {
   );
 }
 export default Login;
+
+const styles = StyleSheet.create({
+  container: isValid => ({
+    backgroundColor: isValid ? "#1877F2" : "#9ACAF7",
+    padding: 10,
+    borderRadius: 5,
+    margin: 5,
+    marginHorizontal: 10,
+    marginVertical: 25,
+  }),
+  text: {
+    fontSize: 15,
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+  },
+  input_container: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#E0DDDD",
+    backgroundColor: "#E8E6E6",
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingVertical: 5,
+    marginVertical: 10,
+  },
+  input: {
+    flex: 1,
+    backgroundColor: "#E8E6E6",
+    borderRadius: 8,
+    color: "black",
+    padding: Platform.OS === "android" ? 4 : 8,
+  },
+});

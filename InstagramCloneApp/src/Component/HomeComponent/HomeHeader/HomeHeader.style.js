@@ -34,5 +34,22 @@ export default StyleSheet.create({
         position: "absolute",
         top: 0,
         right: 0,
+    },
+    unreadBadge: {
+        backgroundColor: "#FE3650",
+        position: "absolute",
+        left: 13,
+        bottom: 14,
+        width: 17,
+        height: 17,
+        borderRadius: 17,
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 2,
+    },
+    unreadBadgeText: {
+        fontSize: 13,
+        color: "#fff",
+        fontWeight: "600",
     }
 });

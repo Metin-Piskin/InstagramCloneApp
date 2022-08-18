@@ -21,6 +21,9 @@ function Header({ onPres }) {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.icons} activeOpacity="0.5">
+                    <View style={styles.unreadBadge}>
+                        <Text style={styles.unreadBadgeText}>3</Text>
+                    </View>
                     <Messengers fill="#000" size={24} />
                 </TouchableOpacity>
             </View>
