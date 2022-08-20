@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Switch, TouchableOpacity, Image } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import validUrl from 'valid-url';
+import firestore from '@react-native-firebase/firestore';
+import auth from "@react-native-firebase/auth";
 
 import styles from './uploadfoto.style';
 import { Paylas } from '../../Component/İcons/icons';
@@ -22,8 +24,50 @@ const uploadPostSchema = Yup.object().shape({
 
 const UploadFoto = ({ navigation }) => {
   const [thumbnailurl, setThumbnailurl] = useState(PLACEHOLDER_IMAGE);
-  const [imageGallery, setImageGallery] = useState(null);
+  const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
 
+  const getUsername = () => {
+    const user = auth().currentUser
+    const unsubscribe = firestore()
+      .collection('users')
+      .where('owner_uid', '==', user.uid)
+      .limit(1)
+      .onSnapshot(
+        snapshot => snapshot.docs.map(doc => {
+          setCurrentLoggedInUser({
+            username: doc.data().username,
+            profilePicture: doc.data().profile_picture
+          }
+          )
+        })
+      )
+      return unsubscribe
+  }
+
+  useEffect(() => {
+    getUsername()
+  }, [])
+
+  const uploadPostToFirebase = (imageurl, caption) => {
+    const unsubscribe = firestore().collection('users')
+    .doc(auth().currentUser.email)
+    .collection('posts')
+    .add({
+      imageurl: imageurl,
+      user: currentLoggedInUser.username,
+      profile_picture: currentLoggedInUser.profilePicture,
+      owner_uid: auth().currentUser.uid,
+      owner_email: auth().currentUser.email,
+      caption: caption,
+      createdAt: firestore.FieldValue.serverTimestamp(),
+      likes_by_users: [],
+      comments: [],
+    })
+    .then(() => { navigation.goBack() })
+    return unsubscribe
+  }
+
+  const [imageGallery, setImageGallery] = useState(null);
   const openGallery = () => {
     const option = {
       mediaType: 'photo',
@@ -48,9 +92,7 @@ const UploadFoto = ({ navigation }) => {
     <Formik
       initialValues={{ caption: '', imageurl: '' }}
       onSubmit={(values) => {
-        console.log(values)
-        console.log('Your post was submitted successfully!')
-        navigation.goBack();
+        uploadPostToFirebase(values.imageurl, values.caption)
       }}
       validationSchema={uploadPostSchema}
       validateOnMount={true}
@@ -85,15 +127,20 @@ const UploadFoto = ({ navigation }) => {
                 value={values.imageurl}
                 multiline={false}
               />
-            {errors.imageurl && (
-              <Text style={{ fontSize: 10, color: 'red'}}>
-                {errors.imageurl}
-              </Text>
-            )}
+              {errors.imageurl && (
+                <Text style={{ fontSize: 10, color: 'red' }}>
+                  {errors.imageurl}
+                </Text>
+              )}
             </View>
 
           </View>
 
+      <View style={styles.çizgi}></View>
+      <TouchableOpacity style={styles.cat} onPress={handleSubmit}>
+        <Text style={styles.yazı}>Kişileri Etiketle</Text>
+        <Paylas fill={"#000"} size={24} />
+      </TouchableOpacity>
           <Clone />
 
           <YazıButton
@@ -113,11 +160,6 @@ export default UploadFoto;
 const Clone = () => {
   return (
     <>
-      <View style={styles.çizgi}></View>
-      <TouchableOpacity style={styles.cat}>
-        <Text style={styles.yazı}>Kişileri Etiketle</Text>
-        <Paylas fill={"#000"} size={24} />
-      </TouchableOpacity>
 
       <View style={styles.çizgi}></View>
       <TouchableOpacity style={styles.cat}>

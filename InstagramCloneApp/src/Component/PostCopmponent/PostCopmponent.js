@@ -3,15 +3,19 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import ReadMore from '@fawazahmed/react-native-read-more';
 import { formatDistance, parseISO } from "date-fns";
 import { tr } from 'date-fns/locale'
+import firestore from '@react-native-firebase/firestore';
+import auth from "@react-native-firebase/auth";
 
 import styles from "./PostCopmponent.style";
-import { Dots, Heart, Comment, Share, BookMark } from "../İcons/icons";
+import { Dots, Heart, Comment, Share, BookMark, Kalp } from "../İcons/icons";
 import Fitİmage from "../Fitİmage";
 import Divider from "../HomeComponent/HomeDivider/HomeDivider";
 
-function Post({ post }) {
+function Post({ post, handleLike }) {
+    {/* 
     const formattedDate = formatDistance(parseISO(post.date), new Date(),
         { addSuffix: true });
+        */}
 
     return (
         <View style={styles.post}>
@@ -29,8 +33,13 @@ function Post({ post }) {
             <View style={styles.content}>
                 <View style={styles.actions}>
                     <View style={styles.left_actions}>
-                        <TouchableOpacity style={styles.action}>
-                            <Heart size={24} fill="#222" />
+                        <TouchableOpacity style={styles.action} onPress={() => handleLike(post)}>
+                            {post.likes_by_users.includes(
+                                auth().currentUser.email
+                            ) ?
+                                <Kalp size={24} fill="#FF005C" />
+                                : <Heart size={24} fill="#222" />
+                            }
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.action}>
                             <Comment size={24} fill="#222" />
@@ -44,7 +53,7 @@ function Post({ post }) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.likes}>
-                    <Text style={styles.likestext}>{post.likes} Likes</Text>
+                    <Text style={styles.likestext}>{post.likes_by_users.length} Likes</Text>
                 </View>
                 <ReadMore numberOfLines={2} seeMoreStyle={{
                     color: '#999',
@@ -64,10 +73,12 @@ function Post({ post }) {
                         <Text style={styles.commenttext}>View all {post.comments.length} Comments</Text>
                     </TouchableOpacity>
                 )}
+                {/* 
                 <View style={styles.dt}>
                     <Text style={styles.date}>{formattedDate}</Text>
                     <Text style={styles.translation}>See Translation</Text>
                 </View>
+                */}
                 {post.comments.map((comment, index) => (
                     <View key={index}>
                         <Text>

@@ -5,7 +5,7 @@ export const POSTS = [
         user: USERS[0].user,
         likes: 7870,
         date: "2022-07-28 13:12:12",
-        caption: "And now I don't know why She wouldn't say goodbye But then it seems that I Had seen it in her eyes And it might not be wise I'd still have to try With all the love I have inside I can't deny I just can't let it die'Cause her heart's just like mine She holds her pain inside So if you ask me why She wouldn't say goodbye ",
+        caption: "avavava ",
         profile_picture: USERS[0].image,
         comments: [
             {

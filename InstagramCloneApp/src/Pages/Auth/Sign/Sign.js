@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Formik } from "formik";
 import auth from "@react-native-firebase/auth";
+import firestore from '@react-native-firebase/firestore';
 import { showMessage } from "react-native-flash-message";
 import * as Yup from 'yup';
 import Validator from 'email-validator';
@@ -27,6 +28,12 @@ function Sign({ navigation }) {
     );
   }
 
+  const getRandomProfilePicture = async () => {
+    const response = await fetch('https://randomuser.me/api')
+    const data = await response.json()
+    return data.results[0].picture.large
+  }
+
   const handleFormSubmit = async (formValues) => {
     {/*
     if (formValues.password !== formValues.repassword) {
@@ -38,7 +45,15 @@ function Sign({ navigation }) {
     }
     */}
     try {
-      await auth().createUserWithEmailAndPassword(formValues.usermail, formValues.password, formValues.username);
+      const authUser = await auth().createUserWithEmailAndPassword(formValues.usermail, formValues.password);
+      firestore().collection('users')
+        .doc(formValues.usermail)
+        .set({
+          owner_uid: authUser.user.uid,
+          username: formValues.username,
+          email: formValues.usermail,
+          profile_picture: await getRandomProfilePicture(),
+        });
       showMessage({
         message: "Kayıt başarılı",
         type: "success",

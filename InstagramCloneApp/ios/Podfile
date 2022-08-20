@@ -6,7 +6,7 @@ install! 'cocoapods', :deterministic_uuids => false
 
 production = ENV["PRODUCTION"] == "1"
 
-target 'InstagramCloneApp' do
+target 'Instagram' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -23,7 +23,7 @@ target 'InstagramCloneApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'InstagramCloneAppTests' do
+  target 'InstagramTests' do
     inherit! :complete
     # Pods for testing
   end

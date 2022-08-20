@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Formik } from "formik";
 import auth from "@react-native-firebase/auth";
 import { showMessage } from "react-native-flash-message";
@@ -23,7 +23,7 @@ function Login({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   const handlesign = () => {
-    navigation.navigate('Sign');
+    navigation.push('Sign');
   }
 
   const handleFormSubmit = async (formValues) => {
@@ -32,10 +32,27 @@ function Login({ navigation }) {
       await auth().signInWithEmailAndPassword(formValues.usermail, formValues.password);
       setLoading(false);
     } catch (error) {
+      Alert.alert(
+        'My Lord...',
+        error.message + '\n\n ... what would you like to do next?',
+        [
+          {
+            text: 'OK',
+            onPress: () => console.log('OK Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'Kayıt Ol',
+            onPress: () => navigation.navigate('Sign'),
+          },
+        ]
+      );
+      {/*
       showMessage({
         message: authErrorMessageParser(error.code),
         type: "danger",
       });
+      */}
       setLoading(false);
     }
   }
