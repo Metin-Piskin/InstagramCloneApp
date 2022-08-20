@@ -2,16 +2,21 @@
 
 - React Native Firebase
 - @react-native-firebase/auth
+- @react-native-firebase/firestore
 - react-navigation
 - @react-navigation/bottom-tabs
 - date-fns
+- email-validator
 - formik
+- yup
 - react-native-flash-message
 - react-native-modal
 - @fawazahmed/react-native-read-more
 - react-native-image-picker
 - react-native-linear-gradient
+- react-native-progress
 - react-native-svg
+- valid-url
 
 # Screenshot
 <p>
