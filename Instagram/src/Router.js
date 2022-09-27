@@ -56,29 +56,79 @@ const Router = () => {
 
     const HomeStack = () => {
         return (
-            <Stack.Navigator>
-                <Stack.Screen name="HomeScreen" component={HomeScreen}
+            <Tab.Navigator
+                screenOptions={{
+                    tabBarShowLabel: false,
+                    headerShown: false,
+                    tabBarActiveTintColor: "#000",
+                    tabBarInactiveTintColor: "#262626",
+                }}
+            >
+                <Tab.Screen name="HomeScreen" component={HomeScreen}
                     options={{
                         headerShown: false,
+                        tabBarIcon: ({ color, focused }) => {
+                            if (focused) {
+                                return <HomeFilled size={30} fill={color} />
+                            }
+                            return <Home size={30} fill={color} />
+                        }
                     }}
                 />
-                <Stack.Screen name="UploadFotoScreen" component={UploadFoto}
+                <Tab.Screen
+                    name="SearchScreen"
+                    component={SearchScreen}
                     options={{
-                        headerTitleStyle: {
-                            fontSize: 20,
-                            fontWeight: "bold",
-                            color: "#000",
-                        },
-                        headerTitleAlign: "center",
-                        headerTitle: "Yeni Gönderi",
+                        tabBarIcon: ({ color, focused }) => {
+                            if (focused) {
+                                return <SearchFilled size={30} fill={color} />
+                            }
+                            return <Search size={30} fill={color} />
+                        }
                     }}
                 />
-                <Stack.Screen name="StoryScreen" component={StoryScreen}
+                <Tab.Screen
+                    name="ReelScreen"
+                    component={ReelScreen}
                     options={{
-                        headerShown: false,
+                        tabBarIcon: ({ color, focused }) => {
+                            if (focused) {
+                                return <ReelFilled size={30} fill={color} />
+                            }
+                            return <Reel size={30} fill={color} />
+                        }
                     }}
                 />
-            </Stack.Navigator>
+                <Tab.Screen
+                    name="ShopScreen"
+                    component={ShopScreen}
+                    options={{
+                        tabBarIcon: ({ color, focused }) => {
+                            if (focused) {
+                                return <ShopFilled size={30} fill={color} />
+                            }
+                            return <Shop size={30} fill={color} />
+                        }
+                    }}
+                />
+                <Tab.Screen
+                    name="ProfileScreen"
+                    component={ProfileScreen}
+                    options={{
+                        tabBarIcon: ({ color, focused }) => {
+                            return (
+                                <Image
+                                    source={Metin}
+                                    style={[styles.avatar, {
+                                        borderColor: focused ? '#000' : 'transparent',
+                                    }]}
+                                />
+                            )
+                        }
+                    }}
+                />
+
+            </Tab.Navigator>
         )
     }
 
@@ -96,19 +146,19 @@ const Router = () => {
                         />
                     </Stack.Navigator>
                 ) : (
-                    <>  
-                        <Tab.Navigator
+                    <>
+                        <Stack.Navigator
                             screenOptions={{
                                 tabBarShowLabel: false,
-                                headerShown: false,
                                 tabBarActiveTintColor: "#000",
                                 tabBarInactiveTintColor: "#262626",
                             }}
                         >
-                            <Tab.Screen
+                            <Stack.Screen
                                 name="HomeStack"
                                 component={HomeStack}
                                 options={{
+                                    headerShown: false,
                                     tabBarIcon: ({ color, focused }) => {
                                         if (focused) {
                                             return <HomeFilled size={30} fill={color} />
@@ -117,59 +167,23 @@ const Router = () => {
                                     }
                                 }}
                             />
-                            <Tab.Screen
-                                name="SearchScreen"
-                                component={SearchScreen}
+                            <Stack.Screen name="UploadFotoScreen" component={UploadFoto}
                                 options={{
-                                    tabBarIcon: ({ color, focused }) => {
-                                        if (focused) {
-                                            return <SearchFilled size={30} fill={color} />
-                                        }
-                                        return <Search size={30} fill={color} />
-                                    }
+                                    headerTitleStyle: {
+                                        fontSize: 20,
+                                        fontWeight: "bold",
+                                        color: "#000",
+                                    },
+                                    headerTitleAlign: "center",
+                                    headerTitle: "Yeni Gönderi",
                                 }}
                             />
-                            <Tab.Screen
-                                name="ReelScreen"
-                                component={ReelScreen}
+                            <Stack.Screen name="StoryScreen" component={StoryScreen}
                                 options={{
-                                    tabBarIcon: ({ color, focused }) => {
-                                        if (focused) {
-                                            return <ReelFilled size={30} fill={color} />
-                                        }
-                                        return <Reel size={30} fill={color} />
-                                    }
+                                    headerShown: false,
                                 }}
                             />
-                            <Tab.Screen
-                                name="ShopScreen"
-                                component={ShopScreen}
-                                options={{
-                                    tabBarIcon: ({ color, focused }) => {
-                                        if (focused) {
-                                            return <ShopFilled size={30} fill={color} />
-                                        }
-                                        return <Shop size={30} fill={color} />
-                                    }
-                                }}
-                            />
-                            <Tab.Screen
-                                name="ProfileScreen"
-                                component={ProfileScreen}
-                                options={{
-                                    tabBarIcon: ({ color, focused }) => {
-                                        return (
-                                            <Image
-                                                source={Metin}
-                                                style={[styles.avatar, {
-                                                    borderColor: focused ? '#000' : 'transparent',
-                                                }]}
-                                            />
-                                        )
-                                    }
-                                }}
-                            />
-                        </Tab.Navigator>
+                        </Stack.Navigator>
                     </>
                 )
             }
