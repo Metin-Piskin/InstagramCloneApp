@@ -8,6 +8,7 @@ import ProfileHug from "../../Component/ProfileComponent/ProfileHug";
 import ProfileStories from "../../Component/ProfileComponent/ProfileStories";
 import ProfileTab from "../../Component/ProfileComponent/ProfileTab";
 import ProfilePosts from "../../Component/ProfileComponent/ProfilePosts";
+import ProfileTopBar from '../../Component/ProfileTopBarsComponent/ProfileTopBar';
 
 import ProfilePlusModal from "../../Component/ModalComponent/ProfilePlusModal";
 import ProfileBurgerModal from "../../Component/ModalComponent/ProfileBurgerModal";
@@ -35,7 +36,7 @@ const Profile = () => {
 
 
     return (
-        <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
+        <View style={{ backgroundColor: "#fff", flex: 1 }}>
             <ProfileHeader
                 onPressPlus={handlePlusPress}
                 onPressBurger={handleBurgerPress}
@@ -53,9 +54,12 @@ const Profile = () => {
             <ProfileFollow />
             <ProfileHug />
             <ProfileStories />
+            {/*
             <ProfileTab />
             <ProfilePosts />
-        </ScrollView>
+            */}
+            <ProfileTopBar />
+        </View>
     );
 }
 export default Profile;

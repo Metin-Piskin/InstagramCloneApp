@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from "@react-native-firebase/auth";
+import firestore from '@react-native-firebase/firestore';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -40,6 +41,26 @@ const Router = () => {
             setUserSession(!!user);
         })
     }, []);
+
+    const [CurrentLoggedInUser, setCurrentLoggedInUser] = useState(true)
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const user = auth().currentUser
+        firestore()
+            .collection('users')
+            .where('owner_uid', '==', user.uid)
+            .get()
+            .then(querySnapshot => {
+                //console.log('Total users: ', querySnapshot.size);
+                querySnapshot.forEach(documentSnapshot => {
+                    setCurrentLoggedInUser(documentSnapshot.data());
+                });
+            });
+        if (!!CurrentLoggedInUser) {
+            setLoading(false);
+        }
+    }, [])
 
     const AuthStack = () => {
         return (
@@ -118,7 +139,7 @@ const Router = () => {
                         tabBarIcon: ({ color, focused }) => {
                             return (
                                 <Image
-                                    source={Metin}
+                                    source={{ uri: CurrentLoggedInUser.profile_picture }}
                                     style={[styles.avatar, {
                                         borderColor: focused ? '#000' : 'transparent',
                                     }]}

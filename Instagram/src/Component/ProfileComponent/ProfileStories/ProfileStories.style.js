@@ -25,6 +25,7 @@ export default StyleSheet.create({
         borderRadius: 52,
         borderWidth: 3,
         borderColor: "#fff",
+        resizeMode: "contain"
     },
     den: {
         borderWidth: 3,
