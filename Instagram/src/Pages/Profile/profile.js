@@ -6,8 +6,6 @@ import ProfileHeader from "../../Component/ProfileComponent/ProfileHeader";
 import ProfileFollow from "../../Component/ProfileComponent/ProfileFollow";
 import ProfileHug from "../../Component/ProfileComponent/ProfileHug";
 import ProfileStories from "../../Component/ProfileComponent/ProfileStories";
-import ProfileTab from "../../Component/ProfileComponent/ProfileTab";
-import ProfilePosts from "../../Component/ProfileComponent/ProfilePosts";
 import ProfileTopBar from '../../Component/ProfileTopBarsComponent/ProfileTopBar';
 
 import ProfilePlusModal from "../../Component/ModalComponent/ProfilePlusModal";
@@ -54,10 +52,6 @@ const Profile = () => {
             <ProfileFollow />
             <ProfileHug />
             <ProfileStories />
-            {/*
-            <ProfileTab />
-            <ProfilePosts />
-            */}
             <ProfileTopBar />
         </View>
     );

@@ -1,5 +1,7 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text } from 'react-native';
+
+import { Union } from "../../../İcons/icons";
 
 const Etiket = () => {
     return (
@@ -10,6 +12,7 @@ const Etiket = () => {
                 justifyContent: 'center'
             }}
         >
+            <Union size={80} fill='#000' />
             <Text>Etiket</Text>
 
         </View>
