@@ -8,7 +8,9 @@
 - @react-native-firebase/auth
 - @react-native-firebase/firestore
 - react-navigation
+- @react-navigation/native-stack
 - @react-navigation/bottom-tabs
+- @react-navigation/material-top-tabs
 - date-fns
 - email-validator
 - formik
@@ -19,12 +21,14 @@
 - react-native-image-picker
 - react-native-linear-gradient
 - react-native-progress
+- react-native-video
 - react-native-svg
 - valid-url
 
 ## Screenshot
 <p>
   <img width="200" height="400" src="https://user-images.githubusercontent.com/85956297/185953026-db1e2214-dd59-48c8-b414-6e1eaf3bda65.png">
+  <img width="200" height="400" src="https://user-images.githubusercontent.com/85956297/200675715-febda59f-2160-40a1-b3db-4ce511aa85a6.png">
   <img width="200" height="400" src="https://user-images.githubusercontent.com/85956297/200573171-163ee666-04e4-470a-bbb5-0aa45e199a54.png">
   <img width="200" height="400" src="https://user-images.githubusercontent.com/85956297/184533995-c494e4ad-86d7-4a2e-a7b4-91575c323d49.png">
   <img width="200" height="400" src="https://user-images.githubusercontent.com/85956297/184533996-bd0e4db4-a653-4a5e-af7c-1047ab19b943.png">
