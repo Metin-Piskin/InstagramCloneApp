@@ -18,8 +18,7 @@ import Login from "./Pages/Auth/Login";
 import Sign from "./Pages/Auth/Sign";
 import UploadFoto from "./Pages/UploadFoto";
 import StoryScreen from "./Pages/Story";
-import Metin from "./Assets/Metin.png";
-import YazıButton from "./Component/YazıButton/YazıButton";
+import Message from "./Pages/Message";
 
 import {
     Home,
@@ -200,6 +199,11 @@ const Router = () => {
                                 }}
                             />
                             <Stack.Screen name="StoryScreen" component={StoryScreen}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen name="Message" component={Message}
                                 options={{
                                     headerShown: false,
                                 }}

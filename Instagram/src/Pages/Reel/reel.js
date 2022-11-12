@@ -51,7 +51,7 @@ const Reel = () => {
                         justifyContent: "center"
                     }}
                 >
-                    <Camera size={35} />
+                    <Camera size={35} fill={'#fff'} />
                 </TouchableOpacity>
             </View>
             <ScrollView>

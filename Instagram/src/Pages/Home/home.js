@@ -67,7 +67,7 @@ const HomePage = ({ navigation }) => {
 
     return (
         <>
-            <HomeHeader onPres={handlePress} />
+            <HomeHeader onPres={handlePress} MessagePress={() => navigation.navigate('Message')} />
             <PlusModal
                 visible={modalVisible}
                 onClose={handleInputToggle}

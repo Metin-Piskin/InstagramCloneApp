@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './HomeHeader.style';
 import { Logo, Plus, Heart, Messengers } from '../../İcons/icons';
 
-function Header({ onPres }) {
+function Header({ onPres, MessagePress }) {
     return (
         <View style={styles.header}>
             <Logo fill="#000" />
@@ -20,7 +20,7 @@ function Header({ onPres }) {
                     <Heart fill="#000" size={24} />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.icons} activeOpacity="0.5">
+                <TouchableOpacity style={styles.icons} activeOpacity="0.5" onPress={MessagePress}>
                     <View style={styles.unreadBadge}>
                         <Text style={styles.unreadBadgeText}>3</Text>
                     </View>
