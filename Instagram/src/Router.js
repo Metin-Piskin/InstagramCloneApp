@@ -19,6 +19,7 @@ import Sign from "./Pages/Auth/Sign";
 import UploadFoto from "./Pages/UploadFoto";
 import StoryScreen from "./Pages/Story";
 import Message from "./Pages/Message";
+import Notification from "./Pages/Notification";
 
 import {
     Home,
@@ -204,6 +205,11 @@ const Router = () => {
                                 }}
                             />
                             <Stack.Screen name="Message" component={Message}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen name="Notification" component={Notification}
                                 options={{
                                     headerShown: false,
                                 }}

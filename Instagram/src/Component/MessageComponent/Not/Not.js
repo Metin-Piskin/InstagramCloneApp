@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 
 import { PlusProf } from '../../İcons/icons';
 
-const Not = ({ profil, text, name, url }) => {
+const Not = ({ profil, text, name, url, post }) => {
     return (
         <View
             style={{
@@ -15,7 +15,7 @@ const Not = ({ profil, text, name, url }) => {
                 profil ? (
                     <View>
                         <Image
-                            source={require('../../../Assets/Metin.png')}
+                            source={{ uri: post.profile_picture }}
                             style={{
                                 width: 100,
                                 height: 100,

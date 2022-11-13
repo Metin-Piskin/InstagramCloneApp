@@ -32,7 +32,7 @@ const Message = ({ navigation }) => {
             <Header post={CurrentLoggedInUser} back={() => navigation.goBack()} />
             <İnput />
             <ScrollView horizontal >
-                <Not profil={true} />
+                <Not profil={true} post={CurrentLoggedInUser} />
                 <Not text={'kachow'} name={'mcqueen'} url={'https://www.rekoroyun.com/resim/simsek-mekkuin.jpg'} />
                 <Not text={'8 Mile'} name={'Eminem'} url={'https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b'} />
                 <Not text={'Iron Man'} name={'Tony Stark'} url={'https://img.joomcdn.net/dace9a3da47d7d748e13af43f96344a4449c7688_original.jpeg'} />
@@ -65,7 +65,7 @@ const Message = ({ navigation }) => {
                     İstekler
                 </Text>
             </View>
-            <MessageCom name={'Eminem'} mess={'Az önce göderildi'} url={'https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b'} />
+            <MessageCom name={'Eminem'} mess={'Bir gönderi gönderildi'} url={'https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b'} />
             <MessageCom name={'Tony Stark'} mess={'Görüldü'} url={'https://img.joomcdn.net/dace9a3da47d7d748e13af43f96344a4449c7688_original.jpeg'} />
             <MessageCom name={'mcqueen'} mess={'Az önce göderildi'} url={'https://www.rekoroyun.com/resim/simsek-mekkuin.jpg'} />
             <MessageCom name={'Walter White'} mess={'Görüldü'} url={'https://uploads-ssl.webflow.com/5fa452663d18a6699f11aa07/62b46638bedf9aabc6b3c121_Walter%20white.jpg'} />

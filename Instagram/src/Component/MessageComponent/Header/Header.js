@@ -16,7 +16,7 @@ const Header = ({ post, back }) => {
                     flexDirection: 'row',
                     flex: 1,
                     alignItems: 'center',
-                    paddingVertical: 5
+                    paddingVertical: 10
                 }}
             >
                 <TouchableOpacity onPress={back}>
@@ -24,7 +24,7 @@ const Header = ({ post, back }) => {
                 </TouchableOpacity>
                 <Text
                     style={{
-                        fontSize: 20,
+                        fontSize: 23,
                         color: '#000',
                         fontWeight: 'bold',
                         marginLeft: 5
